@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -7,30 +6,30 @@ using Wattpad_1.PageObjects;
 
 namespace Wattpad_1
 {
+
     [TestClass]
-    public class LoginTest
+    public class AddBookToLibraryTest
     {
         private IWebDriver driver;
-        private LoginPage loginPage;
+        private HomePage searchBook;
 
         [TestInitialize]
-        public void Setup()
+        public void SetUp()
         {
             driver = new ChromeDriver();
-            loginPage = new LoginPage(driver);
+            var loginPage = new LoginPage(driver);
+            searchBook = new HomePage(driver);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
-        }
-        
-        [TestMethod]
-        public void Login()
-        {
             loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
-            var expectedResult = "Stefana_QA";
-            var homePage = new HomePage(driver);
+        }
 
-            Assert.AreEqual(expectedResult, homePage.UsernameText);
+        [TestMethod]
+        public void AddBookToLibrary()
+        {           
+            searchBook.SearchForBook("Distorted");
+            searchBook.SelectThisBook();
         }
 
         [TestCleanup]

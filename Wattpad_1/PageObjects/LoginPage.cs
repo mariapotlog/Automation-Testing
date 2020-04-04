@@ -17,7 +17,7 @@ namespace Wattpad_1.PageObjects
             driver = browser;
         }
 
-        private By login = By.ClassName("btn btn-sm");
+        private By login = By.CssSelector("button[class*='btn btn-sm']");
         private IWebElement BtnLog_in()
         {
             return driver.FindElement(login);
@@ -35,15 +35,20 @@ namespace Wattpad_1.PageObjects
             return driver.FindElement(password);
         }
 
-        private By btnlogin = By.ClassName("btn btn-lg btn-left-align btn-orange btn-block enable");
+        private By btnlogin = By.XPath("//input[@class='btn btn-lg btn-left-align btn-orange btn-block enable']");
         private IWebElement BtnLogin()
         {
             return driver.FindElement(btnlogin);
         }
 
+        private By btnGotIt = By.XPath("//a[@class='btn-primary confirm-btn']");
+        private IWebElement BtnGotIt()
+        {
+            return driver.FindElement(btnGotIt);
+        }
+
         public void NavigateToLoginPage()
         {
-            //Am pus un wait, poate trebuie sa astept putin inainte ca butonul sa fie accesibil
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
             wait.Until(ExpectedConditions.ElementExists(login));
             BtnLog_in().Click();
@@ -54,6 +59,9 @@ namespace Wattpad_1.PageObjects
             TxtUserEmail().SendKeys(username);
             TxtPassword().SendKeys(password);
             BtnLogin().Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementExists(btnGotIt));
+            BtnGotIt().Click();
         }
     }
 }
