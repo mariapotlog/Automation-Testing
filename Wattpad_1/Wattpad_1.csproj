@@ -67,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AddBookToLibraryTest.cs" />
     <Compile Include="ChangeProfileLocation.cs" />
+    <Compile Include="PostNewConversation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
