@@ -42,6 +42,7 @@ namespace Wattpad_1.PageObjects
         }
 
         private By btnGotIt = By.XPath("//a[@class='btn-primary confirm-btn']");
+
         private IWebElement BtnGotIt()
         {
             return driver.FindElement(btnGotIt);

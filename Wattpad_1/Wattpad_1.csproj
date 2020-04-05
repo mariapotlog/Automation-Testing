@@ -63,8 +63,10 @@
     <Compile Include="LoginTest.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\ProfilePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AddBookToLibraryTest.cs" />
+    <Compile Include="ChangeProfileLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

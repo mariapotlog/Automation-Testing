@@ -18,7 +18,7 @@ namespace Wattpad_1.PageObjects
         }
 
         //Assert pentru username 
-        private IWebElement LblUsername => driver.FindElement(By.CssSelector("span[class='username hidden-xs  hidden-sm hidden-md ']"));
+        private IWebElement LblUsername => driver.FindElement(By.CssSelector("h2[class='greeting-text']"));
         public string UsernameText => LblUsername.Text;
 
         //Acceseaza "search" din homepage
@@ -52,7 +52,33 @@ namespace Wattpad_1.PageObjects
             Search_Book().SendKeys(book_name);
             BtnSearch().Click();
         }
+        //
+        private By btnMyProfile => By.XPath("//*[@id='profile-dropdown']/div[2]/ul/li[1]/a");
+        private By lblGreeting => By.CssSelector("h2[class='greeting-text']");
+        private IWebElement BtnShowProfile()
+        {
+            return driver.FindElement(btnMyProfile);
+        }
 
+        private By ProfileCaret => By.XPath("//*[@id='profile-dropdown']/a/span[2]");
+        private IWebElement BtnMyProfile()
+        {
+            return driver.FindElement(ProfileCaret);
+        }
+        private By ProfileDropdown => By.XPath("//*[@id='profile-dropdown']/div[2]");
+        public void NavigateToProfileDropdown()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(driver => driver.FindElement(lblGreeting));
+            BtnMyProfile().Click();
+        }
+        public void NavigateToProfilePage()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(driver => driver.FindElement(ProfileDropdown));
+            BtnShowProfile().Click();
+        }
+        //
         public void SelectThisBook()
         {
             SelectBook.Click();

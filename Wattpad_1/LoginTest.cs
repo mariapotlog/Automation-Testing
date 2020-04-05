@@ -27,7 +27,7 @@ namespace Wattpad_1
         public void Login()
         {
             loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
-            var expectedResult = "Stefana_QA";
+            var expectedResult = "Welcome home, Stefana_QA!";
             var homePage = new HomePage(driver);
 
             Assert.AreEqual(expectedResult, homePage.UsernameText);
