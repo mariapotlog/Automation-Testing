@@ -61,7 +61,10 @@
   <ItemGroup>
     <Compile Include="PageObjects\BookHomePageBO.cs" />
     <Compile Include="LoginTest.cs" />
+    <Compile Include="PageObjects\BooksFoundPage.cs" />
+    <Compile Include="PageObjects\DistortedBookPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
+    <Compile Include="PageObjects\LibraryPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\ProfilePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

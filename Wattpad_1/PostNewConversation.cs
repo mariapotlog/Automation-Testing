@@ -39,16 +39,16 @@ namespace Wattpad_1
             profilePage.ClickGotItButton();
             profilePage.ClickAnnounceButton();
             
-            var expectedResult = "a few seconds ago";
+            var expectedResult = "in a few seconds";
             //var expectedResult2 = profilePage.PostPinned;
 
             Assert.AreEqual(expectedResult, profilePage.PostAddedTime);
             //Assert.AreEqual(expectedResult2, profilePage.PostPinned);
         }
-        [TestCleanup]
+        /*[TestCleanup]
         public void CleanUp()
         {
             driver.Quit();
-        }
+        }*/
     }
 }

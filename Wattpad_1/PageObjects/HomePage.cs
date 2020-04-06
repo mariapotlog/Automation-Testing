@@ -78,11 +78,14 @@ namespace Wattpad_1.PageObjects
             wait.Until(driver => driver.FindElement(ProfileDropdown));
             BtnShowProfile().Click();
         }
-        //
-        public void SelectThisBook()
-        {
-            SelectBook.Click();
-        }
+ 
 
+        public BooksFoundPage NavigateToBooksFoundPage()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            wait.Until(driver => driver.FindElement(btnSearch));
+            BtnSearch().Click();
+            return new BooksFoundPage(driver);
+        }
     }
 }
