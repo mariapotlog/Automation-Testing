@@ -104,13 +104,12 @@ namespace Wattpad_1.PageObjects
             BtnShowLibrary().Click();
         }
  
-
-        public BooksFoundPage NavigateToBooksFoundPage()
+      /* public BooksFoundPage NavigateToBooksFoundPage()
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
             wait.Until(driver => driver.FindElement(btnSearch));
             BtnSearch().Click();
             return new BooksFoundPage(driver);
-        }
+        }*/
     }
 }
