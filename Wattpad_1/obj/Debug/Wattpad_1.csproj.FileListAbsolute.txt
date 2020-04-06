@@ -35,3 +35,22 @@ C:\Users\JeanR\Documents\Watpad\Wattpad_1\obj\Debug\Wattpad_1.csproj.CoreCompile
 C:\Users\JeanR\Documents\Watpad\Wattpad_1\obj\Debug\Wattpad_1.csproj.CopyComplete
 C:\Users\JeanR\Documents\Watpad\Wattpad_1\obj\Debug\Wattpad_1.dll
 C:\Users\JeanR\Documents\Watpad\Wattpad_1\obj\Debug\Wattpad_1.pdb
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Wattpad_1.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Wattpad_1.pdb
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\SeleniumExtras.WaitHelpers.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\WebDriver.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\WebDriver.Support.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\WebDriver.xml
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\WebDriver.Support.xml
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.csprojAssemblyReference.cache
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.csproj.CoreCompileInputs.cache
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.csproj.CopyComplete
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.dll
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.pdb

@@ -79,6 +79,31 @@ namespace Wattpad_1.PageObjects
             BtnShowProfile().Click();
         }
         //
+        private By btnMyLibrary => By.XPath("//*[@id='profile-dropdown']/div[2]/ul/li[6]/a");
+
+        private IWebElement BtnShowLibrary()
+        {
+            return driver.FindElement(btnMyLibrary);
+        }
+        private By ProfileCaret_2 => By.XPath("//*[@id='profile-dropdown']/a/span[2]");
+        private IWebElement BtnMyLibrary()
+        {
+            return driver.FindElement(ProfileCaret_2);
+        }
+        private By LibraryDropdown => By.XPath("//*[@id='profile-dropdown']/div[2]");
+        public void NavigateToLibraryDropdown()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(driver => driver.FindElement(lblGreeting));
+            BtnMyLibrary().Click();
+        }
+        public void NavigateToLibraryPage()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementIsVisible(LibraryDropdown));
+            BtnShowLibrary().Click();
+        }
+        //
         public void SelectThisBook()
         {
             SelectBook.Click();
