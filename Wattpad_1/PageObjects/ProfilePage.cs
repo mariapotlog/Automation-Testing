@@ -18,7 +18,8 @@ namespace Wattpad_1.PageObjects
             driver = browser;
         }
         private By KeepTrackTooltip => By.XPath("//*[@id='component-walletwithonboarding-profile-/user/stefana_qa']/div/div[2]/div/button");
-        
+                                                //*[@id="component-walletwithonboarding-profile-/user/stefana_qa"]/div/div[2]/div/button
+
         private IWebElement BtnGotIt()
         {
             return driver.FindElement(KeepTrackTooltip);
@@ -28,7 +29,6 @@ namespace Wattpad_1.PageObjects
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             wait.Until(driver => driver.FindElement(KeepTrackTooltip));
             BtnGotIt().Click();
-
         }
 
         //

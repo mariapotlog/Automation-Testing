@@ -104,12 +104,34 @@ namespace Wattpad_1.PageObjects
             BtnShowLibrary().Click();
         }
  
-      /* public BooksFoundPage NavigateToBooksFoundPage()
+        //
+        private By Write => By.XPath("//*[@id='header']/nav[2]/ul/li");
+
+        private IWebElement WriteDropdownCaret()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-            wait.Until(driver => driver.FindElement(btnSearch));
-            BtnSearch().Click();
-            return new BooksFoundPage(driver);
-        }*/
+            return driver.FindElement(Write);
+        }
+
+        public void ClickWriteDropdown()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(driver => driver.FindElement(Write));
+            WriteDropdownCaret().Click();
+        }
+
+        private By WriteDropdown => By.XPath("//*[@id='header']/nav[2]/ul/li/div[2]");
+        //
+        private By CreateStory => By.XPath("//*[@id='header']/nav[2]/ul/li/div[2]/ul/li[1]/a");
+
+        private IWebElement BtnCreateStory()
+        {
+            return driver.FindElement(CreateStory);
+        }
+        public void ClickCreateStoryBtn()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementIsVisible(WriteDropdown));
+            BtnCreateStory().Click();
+        }
     }
 }

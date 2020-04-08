@@ -49,8 +49,8 @@ C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.
 C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\WebDriver.xml
 C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\bin\Debug\WebDriver.Support.xml
-C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.csprojAssemblyReference.cache
 C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.csproj.CoreCompileInputs.cache
 C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.csproj.CopyComplete
 C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.dll
 C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.pdb
+C:\Users\Miscellaneous\Desktop\Automation Testing\Wattpad_1\obj\Debug\Wattpad_1.csprojAssemblyReference.cache

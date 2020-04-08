@@ -38,7 +38,7 @@ namespace Wattpad_1
             libraryPage.ClickCreateListBtn();
 
             var expectedResult = "Fantasy books";
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementIsVisible(libraryPage.Book));
             //  System.Threading.Thread.Sleep(5000);
             Assert.AreEqual(expectedResult, libraryPage.BookItemList);

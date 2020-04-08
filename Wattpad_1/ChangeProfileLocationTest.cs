@@ -7,7 +7,7 @@ using Wattpad_1.PageObjects;
 namespace Wattpad_1
 {
     [TestClass]
-    public class PostNewConversation
+    public class ChangeProfileLocationTest
     {
         private IWebDriver driver;
         private LoginPage loginPage;
@@ -26,29 +26,21 @@ namespace Wattpad_1
             loginPage.NavigateToLoginPage();
         }
         [TestMethod]
-        public void Post_New_Conversation()
+        public void Change_Profile_Location()
         {
             loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
             homePage.NavigateToProfileDropdown();
             homePage.NavigateToProfilePage();
             profilePage.ClickKeepTrackButton();
-            profilePage.ClickConversationsButton();
-            profilePage.ClickWritePostMessage();
-            profilePage.WritePostMessage("Automation testing is the best");
-            profilePage.ClickPostCheckbox();
-            profilePage.ClickGotItButton();
-            profilePage.ClickAnnounceButton();
-            
-            var expectedResult = "in a few seconds";
-            //var expectedResult2 = profilePage.PostPinned;
-
-            Assert.AreEqual(expectedResult, profilePage.PostAddedTime);
-            //Assert.AreEqual(expectedResult2, profilePage.PostPinned);
+            profilePage.ClickEditButton();
+            profilePage.ChangeLocation("Polul Sud");
+            string expectedResult = "Polul Sud";
+            Assert.AreEqual(expectedResult, profilePage.UserProfileLocation);
         }
-        /*[TestCleanup]
+        [TestCleanup]
         public void CleanUp()
         {
             driver.Quit();
-        }*/
+        }
     }
 }
