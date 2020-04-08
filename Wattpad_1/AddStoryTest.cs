@@ -33,8 +33,6 @@ namespace Wattpad_1
             loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
             homePage.ClickWriteDropdown();
             homePage.ClickCreateStoryBtn();
-            storyPage.WriteStoryTitle("The Lord Of the Mountain");
-            storyPage.WriteDescription("The book is about a courageous lord who wanted to conquer the high mountains of Zeeya");
             storyPage.WriteMainCharacter("Magnus");
             storyPage.WriteTag("Adventure");
             storyPage.SetTargetAudience("Young Adult (13-18 years of age)");
@@ -46,6 +44,8 @@ namespace Wattpad_1
             storyPage.WriteFinalStoryTitle("A book for adventurers");
             storyPage.ClickPublishButton();
             storyPage.SetGenre("Adventure");
+            storyPage.WriteStoryTitle("The Lord Of the Mountain");
+            storyPage.WriteDescription("The book is about a courageous lord who wanted to conquer the high mountains of Zeeya");
             storyPage.ClickPublishModalButton();
 
             storyPage.AssertAddStoryTest();

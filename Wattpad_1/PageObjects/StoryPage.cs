@@ -18,6 +18,7 @@ namespace Wattpad_1.PageObjects
             driver = browser;
         }
         //
+        //private By StoryTitle => By.XPath("//*[@id='main-edit-container']/div/div[2]/form/div[1]/div[1]/div");
         private By StoryTitle => By.XPath("//*[@id='main-edit-container']/div/div[2]/form/div[1]/div[1]/div");
 
         private IWebElement StoryTitleInput()
@@ -27,21 +28,21 @@ namespace Wattpad_1.PageObjects
 
         public void WriteStoryTitle(string title)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(driver => driver.FindElement(StoryTitle));
             StoryTitleInput().SendKeys(title);
         }
         //
+        //private By Description => By.XPath("//*[@id='main-edit-container']/div/div[2]/form/div[1]/div[2]/textarea");
         private By Description => By.XPath("//*[@id='main-edit-container']/div/div[2]/form/div[1]/div[2]/textarea");
-
         private IWebElement DescriptionTextarea()
         {
             return driver.FindElement(Description);
         }
         public void WriteDescription(string description)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(StoryTitle));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => driver.FindElement(Description));
             DescriptionTextarea().SendKeys(description);
         }
         //
@@ -51,7 +52,6 @@ namespace Wattpad_1.PageObjects
             return driver.FindElement(MainCharacter);
         }
         private By AddCharacter => By.XPath("//*[@id='main-edit-container']/div/div[2]/form/div[1]/div[3]/div[2]/div/div");
-
         private IWebElement AddCharacterBtn()
         {
             return driver.FindElement(AddCharacter);
@@ -59,8 +59,8 @@ namespace Wattpad_1.PageObjects
 
         public void WriteMainCharacter(string character_name)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(MainCharacter));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => driver.FindElement(AddCharacter));
             MainCharacterInput().SendKeys(character_name);
             AddCharacterBtn().Click();
         }
@@ -80,7 +80,7 @@ namespace Wattpad_1.PageObjects
         }
         public void WriteTag(string tag)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(driver => driver.FindElement(Tag));
             AddTag().Click();
             wait.Until(driver => driver.FindElement(TagInput));
@@ -88,14 +88,13 @@ namespace Wattpad_1.PageObjects
         }
         //
         private By Genre => By.XPath("//*[@id='categoryselect']");
-        ////*[@id="categoryselect"]
 
         private IWebElement SelectGenre => driver.FindElement(Genre);
 
         public void SetGenre(string genre)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(Genre));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(Genre));
             var selectGenre = new SelectElement(SelectGenre);
             selectGenre.SelectByText(genre);
         }
@@ -121,7 +120,6 @@ namespace Wattpad_1.PageObjects
             SelectLang.SelectByText(language);
         }
         //
-
         private By Copyright => By.XPath("//*[@id='copyrightSelect']");
 
         private IWebElement SelectCopyright => driver.FindElement(Copyright);
@@ -154,7 +152,7 @@ namespace Wattpad_1.PageObjects
         }
         public void ClickNextButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(driver => driver.FindElement(Next));
             NextButton().Click();
         }
@@ -166,7 +164,7 @@ namespace Wattpad_1.PageObjects
         }
         public void WriteFinalStoryTitle(string title)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(driver => driver.FindElement(FinalStoryTitle));
 
             for(int i = 0; i < 15; i++)
@@ -198,7 +196,7 @@ namespace Wattpad_1.PageObjects
         }
         public void ClickPublishButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(driver => driver.FindElement(Publish));
             PublishButton().Click();
         }
@@ -206,14 +204,15 @@ namespace Wattpad_1.PageObjects
         //
 
         private By PublishModal => By.XPath("//*[@id='edit-controls']/div[2]/button[2]");
+        private By Modal => By.XPath("//*[@id='generic-modal']/div/div");
         private IWebElement PublishModalButton()
         {
             return driver.FindElement(PublishModal);
         }
         public void ClickPublishModalButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(PublishModal));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(Modal));
             PublishModalButton().Click();
         }
         //
@@ -226,7 +225,7 @@ namespace Wattpad_1.PageObjects
 
         public void AssertAddStoryTest()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(50));
             wait.Until(ExpectedConditions.ElementIsVisible(FinishModalMessage));
             var expectedResult = "You just published A book for adventurers!";
             Assert.AreEqual(expectedResult, FinalMessage);
