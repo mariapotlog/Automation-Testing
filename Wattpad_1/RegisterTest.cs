@@ -26,7 +26,7 @@ namespace Wattpad_1
         {
             //System.Threading.Thread.Sleep(5000);
             loginPage.ClickSignUpButton();
-            loginPage.WriteRegisterInputs("AutomationTesting4","jeanribac95@gmail.com","automationtesting");
+            loginPage.WriteRegisterInputs("automationtesting5", "adyttr@gmail.com", "automationtesting");
             loginPage.SetMonth("Apr");
             loginPage.SetDay("1");
             loginPage.SetYear("1999");

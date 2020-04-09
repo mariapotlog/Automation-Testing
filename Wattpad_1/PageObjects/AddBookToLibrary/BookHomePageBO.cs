@@ -8,7 +8,7 @@ namespace Wattpad_1
 {
     class BookHomePageBO
     {
-        public string TxtBookTitle = "A Brilliant Plan";
+        public string TxtBookTitle = "Radioactive Evolution";
 
         public string TxtOption = "Stefana_QA's Reading List";
     }

@@ -41,7 +41,7 @@ namespace Wattpad_1.PageObjects
         //*[@id="profile-dropdown"]/a/span[2]
         public void NavigateToProfilePage()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(25));
             wait.Until(ExpectedConditions.ElementIsVisible(MyProfile));
             MyProfileButton().Click();
         }
@@ -115,7 +115,55 @@ namespace Wattpad_1.PageObjects
 
         //
 
+        private By writeMeniu => By.XPath("//*[@id='header']/nav[2]/ul/li/a");
+        private IWebElement BtnWrite => driver.FindElement(writeMeniu);
 
+        private By myStories => By.XPath("//*[@id='header']/nav[2]/ul/li/div[2]/ul/li[2]/a");
+        private IWebElement BtnMyStories => driver.FindElement(myStories);
 
+        public void NavigateToMyStoriesPage()
+        {
+            BtnWrite.Click();
+            BtnMyStories.Click();
+        }
+        private By btnSearch => By.CssSelector("span[class='fa fa-search fa-wp-neutral-1 ']");
+        private IWebElement BtnSearch()
+        {
+            return driver.FindElement(btnSearch);
+        }
+        public BooksFoundPage NavigateToBooksFoundPage()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            wait.Until(driver => driver.FindElement(btnSearch));
+            BtnSearch().Click();
+            return new BooksFoundPage(driver);
+        }
+        //Acceseaza "search" din homepage
+        private By iptSearch => By.XPath("//*[@id='search-query']");
+        private IWebElement Search_Book()
+        {
+            return driver.FindElement(iptSearch);
+        }
+        public void SearchForBook(string book_name)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementExists(iptSearch));
+            Search_Book().SendKeys(book_name);
+            wait.Until(ExpectedConditions.TextToBePresentInElementValue(Search_Book(), book_name));
+            BtnSearch().Click();
+        }
+        private By btnSettings => By.XPath("//*[@class='dropdown-menu dropdown-menu-right large']/ul/li[11]/a");
+
+        private IWebElement BtnSettings()
+        {
+            return driver.FindElement(btnSettings);
+        }
+
+        public void NavigateToSettings()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementIsVisible(btnSettings));
+            BtnSettings().Click();
+        }
     }
 }

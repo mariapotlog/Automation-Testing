@@ -25,20 +25,14 @@ namespace Wattpad_1.PageObjects
         {
             return driver.FindElement(thisBook);
         }
-        //creem un element care va selecta cartea "Distorted"
         private IWebElement SelectBook => LstBooks.FirstOrDefault(element => element.Text.Contains(new BookHomePageBO().TxtBookTitle))?.FindElement(thisBook);
 
         public void SelectThisBook()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementExists(thisBook));
             SelectBook.Click();
         }
 
-        public DistortedBookPage NavigateToDistortedBookPage()
-        {
-            SelectBook.Click();
-            return new DistortedBookPage(driver);
-        }
     }
 }

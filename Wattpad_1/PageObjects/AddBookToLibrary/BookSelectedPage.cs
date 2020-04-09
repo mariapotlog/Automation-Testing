@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace Wattpad_1.PageObjects
 {
-    class DistortedBookPage
+    class BookSelectedPage
     {
         private IWebDriver driver;
 
-        public DistortedBookPage(IWebDriver browser)
+        public BookSelectedPage(IWebDriver browser)
         {
             driver = browser;
         }
 
-        private By plusSign => By.CssSelector("button[class*='btn btn-orange btn-sm btn-left-align btn-right-align btn-story-lists on-lists-add-clicked']");
+        private By plusSign => By.XPath("//*[@id='story-landing']/div/div[1]/main/div/div[1]/div/button");
         private IWebElement BtnPlusSign()
         {
             return driver.FindElement(plusSign);
         }
 
-        private By thisOption => By.XPath("//*[@class='dropdown-menu dropdown-menu-right add-to-library']/ul/li[2]/a");
+        private By thisOption => By.XPath("//*[@id='story-landing']/div/div[1]/main/div/div[1]/div/div[2]/ul/li[2]/a");
         private IWebElement SelectOption()
         {
             return driver.FindElement(thisOption);
         }
 
-        private By account => By.CssSelector("span[class='username hidden-xs  hidden-sm hidden-md ']");
+        private By account => By.XPath("//*[@id='profile-dropdown']/a/span[1]");
         private IWebElement BtnAccount()
         {
             return driver.FindElement(account);
@@ -43,8 +43,8 @@ namespace Wattpad_1.PageObjects
 
         public void ApasaPePlus()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-            wait.Until(driver => driver.FindElement(plusSign));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(plusSign));
             BtnPlusSign().Click();
         }
 
@@ -57,9 +57,8 @@ namespace Wattpad_1.PageObjects
 
         public void GoToLibrary()
         {
-            BtnAccount().Click();
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-            wait.Until(driver => driver.FindElement(library));
+            wait.Until(ExpectedConditions.ElementToBeClickable(library));
             BtnLibrary().Click();
         }
 
@@ -71,6 +70,5 @@ namespace Wattpad_1.PageObjects
             BtnLibrary().Click();
             return new LibraryPage(driver);
         }
-
     }
 }
