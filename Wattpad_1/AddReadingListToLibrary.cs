@@ -40,12 +40,14 @@ namespace Wattpad_1
             var expectedResult = "Fantasy books";
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementIsVisible(libraryPage.Book));
-            //  System.Threading.Thread.Sleep(5000);
             Assert.AreEqual(expectedResult, libraryPage.BookItemList);
         }
         [TestCleanup]
         public void CleanUp()
         {
+            libraryPage.ClickMyReadingListButton();
+            libraryPage.ClickBookDropdownButton();
+            libraryPage.ClickDeleteListButton();
             driver.Quit();
         }
     }

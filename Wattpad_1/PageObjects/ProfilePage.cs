@@ -17,83 +17,82 @@ namespace Wattpad_1.PageObjects
         {
             driver = browser;
         }
-        private By KeepTrackTooltip => By.XPath("//*[@id='component-walletwithonboarding-profile-/user/stefana_qa']/div/div[2]/div/button");
-                                                //*[@id="component-walletwithonboarding-profile-/user/stefana_qa"]/div/div[2]/div/button
+        private By KeepTrack => By.XPath("//*[@id='component-walletwithonboarding-profile-/user/stefana_qa']/div/div[2]/div/button");
 
         private IWebElement BtnGotIt()
         {
-            return driver.FindElement(KeepTrackTooltip);
+            return driver.FindElement(KeepTrack);
         }
         public void ClickKeepTrackButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(KeepTrackTooltip));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(KeepTrack));
             BtnGotIt().Click();
         }
 
         //
-        private By EditProfileButton => By.XPath("//*[@id='page-navigation']/div[2]/div/div/button");
-        private IWebElement BtnEditButton()
+        private By EditProfile => By.XPath("//*[@id='page-navigation']/div[2]/div/div/button");
+        private IWebElement EditProfileButton()
         {
-            return driver.FindElement(EditProfileButton);
+            return driver.FindElement(EditProfile);
         }
 
         public void ClickEditButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(EditProfileButton));
-            BtnEditButton().Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(EditProfile));
+            EditProfileButton().Click();
 
         }
         //
-        private By EditLocationInput => By.Id("update-location");
-        private IWebElement InputLocation()
+        private By EditLocation => By.Id("update-location");
+        private IWebElement EditLocationInput()
         {
-            return driver.FindElement(EditLocationInput);
+            return driver.FindElement(EditLocation);
         }
         //
-        private By SaveChangesButton => By.CssSelector("button[class='btn btn-orange on-edit-save']");
-        private IWebElement ClickSaveChangesButton()
+        private By SaveChanges => By.CssSelector("button[class='btn btn-orange on-edit-save']");
+        private IWebElement SaveChangesButton()
         {
-            return driver.FindElement(SaveChangesButton);
+            return driver.FindElement(SaveChanges);
         }
-        public void ChangeLocation(string location)
+        public void ClickAndWriteLocationInput(string location)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-            wait.Until(driver => driver.FindElement(EditProfileButton));
-            InputLocation().Clear();
-            InputLocation().SendKeys(location);
-            ClickSaveChangesButton().Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(driver => driver.FindElement(SaveChanges));
+            EditLocationInput().Clear();
+            EditLocationInput().SendKeys(location);
+            SaveChangesButton().Click();
         }
         //
         private By ProfileLocation => By.XPath("//*[@id='profile-about']/div/div/ul/li[1]/span");
-        private IWebElement LblProfileLocation()
+        private IWebElement ProfileLocationLbl()
         {
             return driver.FindElement(ProfileLocation);
         }
-        public string UserProfileLocation => LblProfileLocation().Text;
+        public string UserProfileLocation => ProfileLocationLbl().Text;
         //
 
         private By Conversations => By.XPath("//*[@id='page-navigation']/div[2]/div/nav/ul/li[2]/a");
 
-        private IWebElement btnConversations()
+        private IWebElement ConversationsButton()
         {
             return driver.FindElement(Conversations);
         }
         public void ClickConversationsButton()
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-            wait.Until(driver => driver.FindElement(EditProfileButton));
-            btnConversations().Click();
+            wait.Until(ExpectedConditions.ElementToBeClickable(Conversations));
+            ConversationsButton().Click();
         }
         //
         private By postMessage => By.XPath("//*[@id='broadcast-container']/div[2]/textarea");
-        private IWebElement inputPostMessage()
+        private IWebElement PostMessageInput()
         {
             return driver.FindElement(postMessage);
         }
         private By postMessageActive => By.CssSelector("textarea[class='form-control count-input new-textarea active']");
-        private IWebElement inputPostMessageActive()
+        private IWebElement PostMessageActiveInput()
         {
             return driver.FindElement(postMessageActive);
         }
@@ -116,14 +115,14 @@ namespace Wattpad_1.PageObjects
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
             wait.Until(driver => driver.FindElement(postMessage));
-            inputPostMessage().Click();
+            PostMessageInput().Click();
             System.Threading.Thread.Sleep(100);
         }
         public void WritePostMessage(string post)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             wait.Until(ExpectedConditions.ElementExists(postMessageActive));
-            inputPostMessageActive().SendKeys(post);
+            PostMessageActiveInput().SendKeys(post);
             System.Threading.Thread.Sleep(100);
         }
         public void ClickPostCheckbox()
@@ -143,25 +142,51 @@ namespace Wattpad_1.PageObjects
         
         public void ClickAnnounceButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-            wait.Until(driver => driver.FindElement(GotIt));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(GotIt));
             AnnounceButton().Click();
             System.Threading.Thread.Sleep(500);
 
         }
 
-        private By PostTime => By.CssSelector("time[class='timestamp']");
-        private IWebElement PostTimer()
+        private By TextMessage => By.XPath("//section[@id='profile-messages']//article[@class='feed-item-new panel pinned-item']//pre[.='Automation testing is the best']");
+        private IWebElement TextMessagePre()
         {
-            return driver.FindElement(PostTime);
+            return driver.FindElement(TextMessage);
         }
-        public string PostAddedTime => PostTimer().Text;
+        public string ConversationMessage => TextMessagePre().Text;
         //
-        private By Pinned => By.XPath("//*[@id='profile-messages']/div/article");
-        private IWebElement PinnedPost()
+        private By PinnedMessage => By.XPath("//*[@id='profile-messages']/div/article");
+        private IWebElement PinnedMessagePost()
         {
-            return driver.FindElement(Pinned);
+            return driver.FindElement(PinnedMessage);
         }
-        public string PostPinned => PinnedPost().Text;
+        public string PostPinned => PinnedMessagePost().Text;
+
+        private By MessageDropdown => By.XPath("//section[@id='profile-messages']//article[@class='feed-item-new panel pinned-item']//div[@class='button-group dropdown']/button/span");
+        private By PinnedPost => By.XPath("//section[@id='profile-messages']//article[@class='feed-item-new panel pinned-item']/div[2]");
+        private IWebElement MessageDropdownButton()
+        {
+            return driver.FindElement(MessageDropdown);
+        }
+        public void ClickMessageDropdownButton()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementExists(PinnedPost));
+            MessageDropdownButton().Click();
+        }
+
+        private By MessageDelete => By.CssSelector("a[data-action='deleteMessage']");
+        private IWebElement MessageDeleteButton()
+        {
+            return driver.FindElement(MessageDelete);
+        }
+        public void ClickMessageDeleteButton()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(MessageDelete));
+            MessageDeleteButton().Click();
+            driver.SwitchTo().Alert().Accept();
+        }
     }
 }

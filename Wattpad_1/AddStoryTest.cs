@@ -54,6 +54,13 @@ namespace Wattpad_1
         [TestCleanup]
         public void CleanUp()
         {
+            storyPage.ClickFinishModalCloseButton();
+            homePage.ClickWriteDropdown();
+            storyPage.ClickMyStoriesButton();
+            storyPage.ClickStoryDropdownButton();
+            storyPage.ClickDeleteStoryButton();
+            storyPage.ClickPopupDeleteButton();
+            storyPage.ClickPopupDeleteConfirmatioButton();
             driver.Quit();
         }
     }

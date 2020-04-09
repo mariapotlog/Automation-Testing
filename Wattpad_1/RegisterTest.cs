@@ -11,16 +11,12 @@ namespace Wattpad_1
     {
         private IWebDriver driver;
         private LoginPage loginPage;
-        private HomePage homePage;
-        private StoryPage storyPage;
 
         [TestInitialize]
         public void SetUp()
         {
             driver = new ChromeDriver();
             loginPage = new LoginPage(driver);
-            homePage = new HomePage(driver);
-            storyPage = new StoryPage(driver);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();

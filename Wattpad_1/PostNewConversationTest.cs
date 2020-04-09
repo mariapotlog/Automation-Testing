@@ -39,13 +39,15 @@ namespace Wattpad_1
             profilePage.ClickGotItButton();
             profilePage.ClickAnnounceButton();
             
-            var expectedResult = "a few seconds ago";
+            var expectedResult = "Automation testing is the best";
 
-            Assert.AreEqual(expectedResult, profilePage.PostAddedTime);
+            Assert.AreEqual(expectedResult, profilePage.ConversationMessage);
         }
         [TestCleanup]
         public void CleanUp()
         {
+            profilePage.ClickMessageDropdownButton();
+            profilePage.ClickMessageDeleteButton();
             driver.Quit();
         }
     }

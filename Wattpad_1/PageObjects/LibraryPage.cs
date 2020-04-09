@@ -87,6 +87,49 @@ namespace Wattpad_1.PageObjects
             return driver.FindElement(Book);
         }
         public string BookItemList => BookSpan().Text;
+
+        //
+
+        private By MyReadingList => By.XPath("//*[@id='reading-list']/div/div[1]/a");
+
+        private IWebElement MyReadingListButton()
+        {
+            return driver.FindElement(MyReadingList);
+        }
+        public void ClickMyReadingListButton()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(MyReadingList));
+            MyReadingListButton().Click();
+        }
+
+        //*[@id="reading-list-tab"]/div[2]/div/div[3]/button
+
+        private By BookDropdown => By.XPath(" //*[@id='reading-list-tab']/div[2]/div/div[3]/button");
+
+        private IWebElement BookDropdownButton()
+        {
+            return driver.FindElement(BookDropdown);
+        }
+        public void ClickBookDropdownButton()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(BookDropdown));
+            BookDropdownButton().Click();
+        }
+
+        private By DeleteList => By.XPath(" //*[@id='reading-list-tab']/div[2]/div/div[3]/ul/li[1]/a");
+        private IWebElement DeleteListButton()
+        {
+            return driver.FindElement(DeleteList);
+        }
+        public void ClickDeleteListButton()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(DeleteList));
+            DeleteListButton().Click();
+            driver.SwitchTo().Alert().Accept();
+        }
     }
 }
 

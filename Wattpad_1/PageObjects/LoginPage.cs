@@ -62,7 +62,7 @@ namespace Wattpad_1.PageObjects
             TxtPassword().SendKeys(password);
             BtnLogin().Click();
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementExists(btnGotIt));
+            wait.Until(ExpectedConditions.ElementToBeClickable(btnGotIt));
             BtnGotIt().Click();
         }
         private By SignUp => By.XPath("//*[@id='authentication-panel']/footer/span/a");

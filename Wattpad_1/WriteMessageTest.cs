@@ -7,39 +7,42 @@ using Wattpad_1.PageObjects;
 namespace Wattpad_1
 {
     [TestClass]
-    public class ChangeProfileLocationTest
+    public class WriteMessageTest
     {
         private IWebDriver driver;
         private LoginPage loginPage;
-        private ProfilePage profilePage;
         private HomePage homePage;
+        private InboxPage inboxPage;
 
         [TestInitialize]
-        public void Setup()
+        public void SetUp()
         {
             driver = new ChromeDriver();
             loginPage = new LoginPage(driver);
             homePage = new HomePage(driver);
-            profilePage = new ProfilePage(driver);
+            inboxPage = new InboxPage(driver);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
         }
         [TestMethod]
-        public void Change_Profile_Location()
+        public void Write_Message_Test()
         {
             loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
             homePage.NavigateToProfileDropdown();
-            homePage.NavigateToProfilePage();
-            profilePage.ClickKeepTrackButton();
-            profilePage.ClickEditButton();
-            profilePage.ClickAndWriteLocationInput("Polul Sud");
-            string expectedResult = "Polul Sud";
-            Assert.AreEqual(expectedResult, profilePage.UserProfileLocation);
+            homePage.ClickInboxButton();
+            inboxPage.ClickNewMessageButton();
+            inboxPage.WriteReceiverInput("automationtesting4");
+            inboxPage.ClickPersonInput();
+            inboxPage.WriteChatTextarea("hello");
+            inboxPage.ClickSendButton();
+            inboxPage.AssertWriteMessageTest();
+
         }
         [TestCleanup]
         public void CleanUp()
         {
+            inboxPage.ClickDeleteButton();
             driver.Quit();
         }
     }

@@ -20,88 +20,54 @@ namespace Wattpad_1.PageObjects
         //Assert pentru username 
         private IWebElement LblUsername => driver.FindElement(By.CssSelector("h2[class='greeting-text']"));
         public string UsernameText => LblUsername.Text;
-
-        //Acceseaza "search" din homepage
-        private By iptSearch =>By.Id("search-query");
-        private IWebElement Search_Book()
-        {
-            return driver.FindElement(iptSearch);
-        }
-
-        private By btnSearch => By.CssSelector("span[class='fa fa-search fa-wp-neutral-1 ']");
-        private IWebElement BtnSearch()
-        {
-            return driver.FindElement(btnSearch);
-        }
-        //De aici am inceput cu lista de titluri de carti
-        private By bookTitles = By.XPath("//h5[@class='story-title-heading']");
-        private IList<IWebElement> LstBooks => driver.FindElements(bookTitles);
-
-        private By thisBook => By.XPath("//h5[@class='story-title-heading']");
-        private IWebElement ThisBook()
-        {
-            return driver.FindElement(thisBook);
-        }
-        //creem un element care va selecta cartea "Distorted"
-        private IWebElement SelectBook => LstBooks.FirstOrDefault(element => element.Text.Contains(new BookHomePageBO().TxtBookTitle))?.FindElement(thisBook);
-
-        public void SearchForBook(string book_name)
-        {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
-            wait.Until(ExpectedConditions.ElementExists(iptSearch));
-            Search_Book().SendKeys(book_name);
-            BtnSearch().Click();
-        }
         //
-        private By btnMyProfile => By.XPath("//*[@id='profile-dropdown']/div[2]/ul/li[1]/a");
-        private By lblGreeting => By.CssSelector("h2[class='greeting-text']");
-        private IWebElement BtnShowProfile()
+        private By ProfileDropdown => By.XPath("//*[@id='profile-dropdown']/a/span[2]");
+        private IWebElement ProfileDropdownSpan()
         {
-            return driver.FindElement(btnMyProfile);
+            return driver.FindElement(ProfileDropdown);
         }
-
-        private By ProfileCaret => By.XPath("//*[@id='profile-dropdown']/a/span[2]");
-        private IWebElement BtnMyProfile()
-        {
-            return driver.FindElement(ProfileCaret);
-        }
-        private By ProfileDropdown => By.XPath("//*[@id='profile-dropdown']/div[2]");
         public void NavigateToProfileDropdown()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(lblGreeting));
-            BtnMyProfile().Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(ProfileDropdown));
+            ProfileDropdownSpan().Click();
         }
+        private By MyProfile => By.XPath("//*[@id='profile-dropdown']/div[2]/ul/li[1]/a");
+        //private By Greeting => By.CssSelector("h2[class='greeting-text']");
+        private IWebElement MyProfileButton()
+        {
+            return driver.FindElement(MyProfile);
+        }
+        //*[@id="profile-dropdown"]/a/span[2]
         public void NavigateToProfilePage()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(ProfileDropdown));
-            BtnShowProfile().Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(MyProfile));
+            MyProfileButton().Click();
         }
         //
-        private By btnMyLibrary => By.XPath("//*[@id='profile-dropdown']/div[2]/ul/li[6]/a");
-
-        private IWebElement BtnShowLibrary()
+        private By LibraryDropdown => By.XPath("//*[@id='profile-dropdown']/a");
+        private IWebElement LibraryDropdownCaret()
         {
-            return driver.FindElement(btnMyLibrary);
+            return driver.FindElement(LibraryDropdown);
         }
-        private By ProfileCaret_2 => By.XPath("//*[@id='profile-dropdown']/a/span[2]");
-        private IWebElement BtnMyLibrary()
-        {
-            return driver.FindElement(ProfileCaret_2);
-        }
-        private By LibraryDropdown => By.XPath("//*[@id='profile-dropdown']/div[2]");
         public void NavigateToLibraryDropdown()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(driver => driver.FindElement(lblGreeting));
-            BtnMyLibrary().Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(LibraryDropdown));
+            LibraryDropdownCaret().Click();
+        }
+        private By MyLibrary => By.XPath("//*[@id='profile-dropdown']/div[2]/ul/li[6]/a");
+
+        private IWebElement MyLibraryButton()
+        {
+            return driver.FindElement(MyLibrary);
         }
         public void NavigateToLibraryPage()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(ExpectedConditions.ElementIsVisible(LibraryDropdown));
-            BtnShowLibrary().Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(MyLibrary));
+            MyLibraryButton().Click();
         }
  
         //
@@ -133,5 +99,23 @@ namespace Wattpad_1.PageObjects
             wait.Until(ExpectedConditions.ElementIsVisible(WriteDropdown));
             BtnCreateStory().Click();
         }
+
+        private By Inbox => By.XPath(" //div[@id='profile-dropdown']/div[@role='menu']//a[@href='/inbox']");
+
+        private IWebElement InboxButton()
+        {
+            return driver.FindElement(Inbox);
+        }
+        public void ClickInboxButton()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(ExpectedConditions.ElementIsVisible(Inbox));
+            InboxButton().Click();
+        }
+
+        //
+
+
+
     }
 }

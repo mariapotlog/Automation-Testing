@@ -62,6 +62,7 @@
     <Compile Include="PageObjects\BookHomePageBO.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
+    <Compile Include="PageObjects\InboxPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\ProfilePage.cs" />
     <Compile Include="PageObjects\LibraryPage.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="AddReadingListToLibrary.cs" />
     <Compile Include="AddStoryTest.cs" />
     <Compile Include="RegisterTest.cs" />
+    <Compile Include="WriteMessageTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
