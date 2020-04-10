@@ -18,7 +18,7 @@ namespace Wattpad_1.PageObjects
             driver = browser;
         }
 
-        private By allStories => By.XPath("//*[@id='creation-works-listing']/div[1]/div/div[1]/div/div/button[2]");
+        private By allStories => By.XPath("//*[@id='creation-works-listing']/div[1]/div/div[1]/div/section/div/div/div/div[2]/div[2]/h3/a/strong");
         private IWebElement BtnAllStories()
         {
             return driver.FindElement(allStories);
@@ -38,10 +38,10 @@ namespace Wattpad_1.PageObjects
 
         public void NavigateToOurStory()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementIsVisible(allStories));
             BtnAllStories().Click();
-            var wait2 = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait2 = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait2.Until(ExpectedConditions.ElementIsVisible(thisStory));
             SelectStory.Click();
         }

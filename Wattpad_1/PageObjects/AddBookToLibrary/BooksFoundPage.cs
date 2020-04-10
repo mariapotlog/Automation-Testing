@@ -16,6 +16,7 @@ namespace Wattpad_1.PageObjects
         {
             driver = browser;
         }
+        BookHomePageBO bookHomePageBO = new BookHomePageBO();
 
         private By bookTitles = By.XPath("//h5[@class='story-title-heading']");
         private IList<IWebElement> LstBooks => driver.FindElements(bookTitles);
@@ -25,7 +26,7 @@ namespace Wattpad_1.PageObjects
         {
             return driver.FindElement(thisBook);
         }
-        private IWebElement SelectBook => LstBooks.FirstOrDefault(element => element.Text.Contains(new BookHomePageBO().TxtBookTitle))?.FindElement(thisBook);
+        private IWebElement SelectBook => LstBooks.FirstOrDefault(element => element.Text.Contains(bookHomePageBO.BookTitle))?.FindElement(thisBook);
 
         public void SelectThisBook()
         {

@@ -14,7 +14,8 @@ namespace Wattpad_1
         private IWebDriver driver;
         private LoginPage loginPage;
         private HomePage homePage;
-        private SettingsPage settings;
+        private SettingsPage settingsPage;
+        private LoginCredentialsBo loginCredentials = new LoginCredentialsBo();
 
         [TestInitialize]
         public void SetUp()
@@ -22,11 +23,11 @@ namespace Wattpad_1
             driver = new ChromeDriver();
             loginPage = new LoginPage(driver);
             homePage = new HomePage(driver);
-            settings = new SettingsPage(driver);
+            settingsPage = new SettingsPage(driver);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
-            loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
+            loginPage.LoginApplication(loginCredentials.Username, loginCredentials.Password);
         }
 
 
@@ -35,11 +36,9 @@ namespace Wattpad_1
         {
             homePage.NavigateToProfileDropdown();
             homePage.NavigateToSettings();
-            settings.ChangeSettings(new SettingsBO());
+            settingsPage.ChangeSettings(new SettingsBO());
 
-            Thread.Sleep(1000);
-            string expectedResult = "Your changes were successful!";
-            Assert.AreEqual(expectedResult, settings.Message);
+            settingsPage.AssertChangeSettingsTest("Your changes were successful!");
         }
 
         [TestCleanup]

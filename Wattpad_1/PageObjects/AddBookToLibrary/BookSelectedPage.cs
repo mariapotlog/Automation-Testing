@@ -50,14 +50,14 @@ namespace Wattpad_1.PageObjects
 
         public void CheckReadingList()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(driver => driver.FindElement(thisOption));
             SelectOption().Click();
         }
 
         public void GoToLibrary()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(library));
             BtnLibrary().Click();
         }
@@ -65,7 +65,7 @@ namespace Wattpad_1.PageObjects
         public LibraryPage NavigateToLibraryPage()
         {
             BtnAccount().Click();
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(driver => driver.FindElement(library));
             BtnLibrary().Click();
             return new LibraryPage(driver);

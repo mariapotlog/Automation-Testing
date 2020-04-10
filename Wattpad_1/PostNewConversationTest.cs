@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Wattpad_1.PageObjects;
+using Wattpad_1.PageObjects.TestsBO;
 
 namespace Wattpad_1
 {
@@ -13,6 +14,8 @@ namespace Wattpad_1
         private LoginPage loginPage;
         private ProfilePage profilePage;
         private HomePage homePage;
+        private LoginCredentialsBo loginCredentials = new LoginCredentialsBo();
+        private PostNewConversationTestBO postNewConversationTestBO = new PostNewConversationTestBO();
 
         [TestInitialize]
         public void Setup()
@@ -24,24 +27,22 @@ namespace Wattpad_1
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
+            loginPage.LoginApplication(loginCredentials.Username, loginCredentials.Password);
         }
         [TestMethod]
         public void Post_New_Conversation()
         {
-            loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
             homePage.NavigateToProfileDropdown();
             homePage.NavigateToProfilePage();
             profilePage.ClickKeepTrackButton();
             profilePage.ClickConversationsButton();
             profilePage.ClickWritePostMessage();
-            profilePage.WritePostMessage("Automation testing is the best");
+            profilePage.WritePostMessage(postNewConversationTestBO.postMessage);
             profilePage.ClickPostCheckbox();
             profilePage.ClickGotItButton();
             profilePage.ClickAnnounceButton();
-            
-            var expectedResult = "Automation testing is the best";
 
-            Assert.AreEqual(expectedResult, profilePage.ConversationMessage);
+            profilePage.AssertPostNewConversationTest(postNewConversationTestBO.assertMessage);
         }
         [TestCleanup]
         public void CleanUp()

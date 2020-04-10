@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Wattpad_1.PageObjects;
+using Wattpad_1.PageObjects.TestsBO;
 
 namespace Wattpad_1
 {
@@ -13,6 +14,8 @@ namespace Wattpad_1
         private LoginPage loginPage;
         private HomePage homePage;
         private InboxPage inboxPage;
+        private LoginCredentialsBo loginCredentials = new LoginCredentialsBo();
+        private WriteMessageTestBO writeMessageTestBO = new WriteMessageTestBO();
 
         [TestInitialize]
         public void SetUp()
@@ -24,17 +27,17 @@ namespace Wattpad_1
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
+            loginPage.LoginApplication(loginCredentials.Username, loginCredentials.Password);
         }
         [TestMethod]
         public void Write_Message_Test()
         {
-            loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
             homePage.NavigateToProfileDropdown();
             homePage.ClickInboxButton();
             inboxPage.ClickNewMessageButton();
-            inboxPage.WriteReceiverInput("automationtesting4");
+            inboxPage.WriteReceiverInput(writeMessageTestBO.receiver);
             inboxPage.ClickPersonInput();
-            inboxPage.WriteChatTextarea("hello");
+            inboxPage.WriteChatTextarea(writeMessageTestBO.chatMessage);
             inboxPage.ClickSendButton();
             inboxPage.AssertWriteMessageTest();
 

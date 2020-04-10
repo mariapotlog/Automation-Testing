@@ -17,6 +17,9 @@ namespace Wattpad_1.PageObjects
         {
             driver = browser;
         }
+
+        BookHomePageBO bookHomePageBO = new BookHomePageBO();
+
         private By ReadingList => By.XPath("//*[@id='library-landing-page']/div[1]/div/div/nav/ul/li[3]/a");
 
         private IWebElement BtnReadingList()
@@ -81,6 +84,13 @@ namespace Wattpad_1.PageObjects
             BtnCreateList().Click();
         }
 
+        public void AssertAddReadingListToLibraryTest(string expectedResult)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(Book));
+            Assert.AreEqual(expectedResult, BookItemList);
+        }
+        //
         public By Book => By.XPath("//*[@id='reading-list']/div/div[2]/aside/div[1]/div[1]/div[2]/h1/span");    
 
         private IWebElement BookSpan()
@@ -140,7 +150,7 @@ namespace Wattpad_1.PageObjects
             return driver.FindElement(book);
         }
 
-        public IWebElement LblBookTitle => LstOurBooks.FirstOrDefault(element => element.Text.Contains(new BookHomePageBO().TxtBookTitle))?.FindElement(book);
+        public IWebElement LblBookTitle => LstOurBooks.FirstOrDefault(element => element.Text.Contains(bookHomePageBO.BookTitle))?.FindElement(book);
 
 
 
@@ -150,7 +160,7 @@ namespace Wattpad_1.PageObjects
         }
         private By list = By.XPath("//div[@class='story-info vcenter']/h3/a[1]/strong");
         private IList<IWebElement> LstReadingList => driver.FindElements(list);
-        private IWebElement SelectList => LstReadingList.FirstOrDefault(element => element.Text.Contains(new BookHomePageBO().TxtOption))?.FindElement(thisReadingList);
+        private IWebElement SelectList => LstReadingList.FirstOrDefault(element => element.Text.Contains(bookHomePageBO.Option))?.FindElement(thisReadingList);
         private By thisReadingList => By.XPath("//div[@class='story-info vcenter']/h3/a[1]/strong");
         public void SelectReadingList()
         {

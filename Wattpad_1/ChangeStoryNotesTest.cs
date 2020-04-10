@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Wattpad_1.PageObjects;
 using Wattpad_1.PageObjects.ChangeStoryNotes;
+using Wattpad_1.PageObjects.TestsBO;
 
 namespace Wattpad_1
 {
@@ -15,6 +16,8 @@ namespace Wattpad_1
         private HomePage homePage;
         private MyStoriesPage myStories;
         private StoryNotesPage storyNotes;
+        private LoginCredentialsBo loginCredentials = new LoginCredentialsBo();
+        private ChangeStoryNotesBO changeStoryNotesBO = new ChangeStoryNotesBO();
 
 
         [TestInitialize]
@@ -28,7 +31,7 @@ namespace Wattpad_1
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
-            loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
+            loginPage.LoginApplication(loginCredentials.Username, loginCredentials.Password);
         }
 
         [TestMethod]
@@ -43,9 +46,8 @@ namespace Wattpad_1
             storyNotes.ChangeRangeFuture();
             storyNotes.ChangeRangeUsesHeart();
             storyNotes.CheckRadioBtnAndSave();
-
-            string expectedResult = "Saved";
-            Assert.AreEqual(expectedResult, storyNotes.Saved);
+            storyNotes.AssertChangeStoryNotesTest(changeStoryNotesBO.expectedMessage);
+           
         }
 
         [TestCleanup]

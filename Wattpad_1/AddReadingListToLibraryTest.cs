@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using Wattpad_1.PageObjects;
+using Wattpad_1.PageObjects.TestsBO;
 
 namespace Wattpad_1
 {
-
     [TestClass]
-    public class AddBookToLibraryTest
+    public class AddReadingListToLibraryTest
     {
         private IWebDriver driver;
-        private BooksFoundPage booksFoundPage;
-        private BookSelectedPage bookSelectedPage;
         private LoginPage loginPage;
         private HomePage homePage;
         private LibraryPage libraryPage;
         private LoginCredentialsBo loginCredentials = new LoginCredentialsBo();
-        private BookHomePageBO bookHomePageBO = new BookHomePageBO();
+        private AddReadingListToLibraryTestBO addReadingListToLibraryTestBO = new AddReadingListToLibraryTestBO();
 
         [TestInitialize]
         public void SetUp()
@@ -26,37 +24,30 @@ namespace Wattpad_1
             driver = new ChromeDriver();
             loginPage = new LoginPage(driver);
             homePage = new HomePage(driver);
-            bookSelectedPage = new BookSelectedPage(driver);
-            booksFoundPage = new BooksFoundPage(driver);
             libraryPage = new LibraryPage(driver);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
             loginPage.LoginApplication(loginCredentials.Username, loginCredentials.Password);
         }
-
         [TestMethod]
-        public void AddBookToLibrary()
+        public void Add_Reading_List()
         {
-            homePage.SearchForBook(bookHomePageBO.BookTitle);
-            homePage.NavigateToBooksFoundPage();
-            booksFoundPage.SelectThisBook();
-            bookSelectedPage.ApasaPePlus();
-            bookSelectedPage.CheckReadingList();
             homePage.NavigateToLibraryDropdown();
             homePage.NavigateToLibraryPage();
-            libraryPage.GoToReadingList();
-            libraryPage.SelectReadingList();
+            libraryPage.ClickReadingListButton();
+            libraryPage.ClickNewReadingListButton();
+            libraryPage.ClickCreateReadingList(addReadingListToLibraryTestBO.readingList);
+            libraryPage.ClickCreateListBtn();
 
-            libraryPage.AssertAddBookToLibraryTest();
+            libraryPage.AssertAddReadingListToLibraryTest(addReadingListToLibraryTestBO.assertString);
         }
-
         [TestCleanup]
         public void CleanUp()
         {
-            libraryPage.DeleteBookFromLibrary();
-            bookSelectedPage.ApasaPePlus();
-            bookSelectedPage.CheckReadingList();
+            libraryPage.ClickMyReadingListButton();
+            libraryPage.ClickBookDropdownButton();
+            libraryPage.ClickDeleteListButton();
             driver.Quit();
         }
     }

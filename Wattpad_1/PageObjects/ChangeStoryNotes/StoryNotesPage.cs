@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -153,6 +154,13 @@ namespace Wattpad_1.PageObjects
         {
             FeelingGood.Click();
             BtnSave.Click();
+        }
+
+        public void AssertChangeStoryNotesTest(string expectedResult)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(saved));
+            Assert.AreEqual(expectedResult, Saved);
         }
     }
 }

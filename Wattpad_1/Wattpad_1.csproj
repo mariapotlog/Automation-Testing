@@ -60,24 +60,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageObjects\AddBookToLibrary\BooksFoundPage.cs" />
-    <Compile Include="PageObjects\AddBookToLibrary\BookHomePageBO.cs" />
+    <Compile Include="PageObjects\TestsBO\BookHomePageBO.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="PageObjects\AddBookToLibrary\BookSelectedPage.cs" />
-    <Compile Include="PageObjects\ChangeSettings\SettingsBO.cs" />
-    <Compile Include="PageObjects\ChangeSettings\SettingsPage.cs" />
+    <Compile Include="PageObjects\TestsBO\ChangeStoryNotesBO.cs" />
+    <Compile Include="PageObjects\TestsBO\PostNewConversationTestBO.cs" />
+    <Compile Include="PageObjects\TestsBO\SettingsBO.cs" />
+    <Compile Include="PageObjects\SettingsPage.cs" />
     <Compile Include="PageObjects\ChangeStoryNotes\MyStoriesPage.cs" />
-    <Compile Include="PageObjects\ChangeStoryNotes\StoryNotesBO.cs" />
+    <Compile Include="PageObjects\TestsBO\StoryNotesBO.cs" />
     <Compile Include="PageObjects\ChangeStoryNotes\StoryNotesPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\InboxPage.cs" />
+    <Compile Include="PageObjects\TestsBO\LoginCredentialsBo.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\ProfilePage.cs" />
     <Compile Include="PageObjects\AddBookToLibrary\LibraryPage.cs" />
     <Compile Include="PageObjects\StoryPage.cs" />
+    <Compile Include="PageObjects\TestsBO\AddReadingListToLibraryTestBO.cs" />
+    <Compile Include="PageObjects\TestsBO\AddStoryTestBO.cs" />
+    <Compile Include="PageObjects\TestsBO\ChangeProfileLocationBO.cs" />
+    <Compile Include="PageObjects\TestsBO\WriteMessageTestBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChangeProfileLocationTest.cs" />
     <Compile Include="PostNewConversationTest.cs" />
-    <Compile Include="AddReadingListToLibrary.cs" />
+    <Compile Include="AddReadingListToLibraryTest.cs" />
     <Compile Include="AddStoryTest.cs" />
     <Compile Include="RegisterTest.cs" />
     <Compile Include="ChangeStoryNotesTest.cs" />
@@ -88,7 +95,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

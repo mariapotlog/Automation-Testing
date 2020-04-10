@@ -29,7 +29,7 @@ namespace Wattpad_1.PageObjects
         public void NavigateToProfileDropdown()
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementIsVisible(ProfileDropdown));
+            wait.Until(ExpectedConditions.ElementToBeClickable(ProfileDropdown));
             ProfileDropdownSpan().Click();
         }
         private By MyProfile => By.XPath("//*[@id='profile-dropdown']/div[2]/ul/li[1]/a");

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -71,6 +72,12 @@ namespace Wattpad_1.PageObjects
             return driver.FindElement(ProfileLocation);
         }
         public string UserProfileLocation => ProfileLocationLbl().Text;
+        public void AssertChangeProfileLocation(string expectedResult)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementExists(ProfileLocation));
+            Assert.AreEqual(expectedResult, UserProfileLocation);
+        }
         //
 
         private By Conversations => By.XPath("//*[@id='page-navigation']/div[2]/div/nav/ul/li[2]/a");
@@ -139,7 +146,7 @@ namespace Wattpad_1.PageObjects
             wait.Until(driver => driver.FindElement(GotIt));
             GotItButton().Click();
         }
-        
+
         public void ClickAnnounceButton()
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
@@ -149,12 +156,20 @@ namespace Wattpad_1.PageObjects
 
         }
 
-        private By TextMessage => By.XPath("//section[@id='profile-messages']//article[@class='feed-item-new panel pinned-item']//pre[.='Automation testing is the best']");
+    //
+    private By TextMessage => By.XPath("//section[@id='profile-messages']//article[@class='feed-item-new panel pinned-item']//pre[.='Automation testing is the best']");
         private IWebElement TextMessagePre()
         {
             return driver.FindElement(TextMessage);
         }
         public string ConversationMessage => TextMessagePre().Text;
+
+        public void AssertPostNewConversationTest(string expectedResult)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementExists(TextMessage));
+            Assert.AreEqual(expectedResult, ConversationMessage);
+        }
         //
         private By PinnedMessage => By.XPath("//*[@id='profile-messages']/div/article");
         private IWebElement PinnedMessagePost()

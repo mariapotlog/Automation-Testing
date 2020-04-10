@@ -223,11 +223,10 @@ namespace Wattpad_1.PageObjects
         }
         public string FinalMessage => FinishModalMessageH4().Text;
 
-        public void AssertAddStoryTest()
+        public void AssertAddStoryTest(string expectedResult)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(50));
             wait.Until(ExpectedConditions.ElementIsVisible(FinishModalMessage));
-            var expectedResult = "You just published A book for adventurers!";
             Assert.AreEqual(expectedResult, FinalMessage);
         }
 

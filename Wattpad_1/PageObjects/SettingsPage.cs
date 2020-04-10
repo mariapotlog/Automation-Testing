@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -64,6 +65,13 @@ namespace Wattpad_1.PageObjects
             TxtAbout.SendKeys(Keys.Backspace);
             TxtAbout.SendKeys(change.TxtAbout);
             BtnSubmit.Click();
+        }
+
+        public void AssertChangeSettingsTest(string expectedResult)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(ExpectedConditions.ElementIsVisible(assert));
+            Assert.AreEqual(expectedResult, Message);
         }
 
 

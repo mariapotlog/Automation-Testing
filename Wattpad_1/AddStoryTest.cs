@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Wattpad_1.PageObjects;
+using Wattpad_1.PageObjects.TestsBO;
 
 namespace Wattpad_1
 {
@@ -14,6 +15,8 @@ namespace Wattpad_1
         private LoginPage loginPage;
         private HomePage homePage;
         private StoryPage storyPage;
+        private LoginCredentialsBo loginCredentials = new LoginCredentialsBo();
+        private AddStoryTestBO addStoryTestBo = new AddStoryTestBO();
 
         [TestInitialize]
         public void SetUp()
@@ -25,30 +28,30 @@ namespace Wattpad_1
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.wattpad.com/");
             loginPage.NavigateToLoginPage();
+            loginPage.LoginApplication(loginCredentials.Username, loginCredentials.Password);
         }
 
         [TestMethod]
         public void Add_Story()
         {
-            loginPage.LoginApplication("stefanatoma98@gmail.com", "testareautomata");
             homePage.ClickWriteDropdown();
             homePage.ClickCreateStoryBtn();
-            storyPage.WriteMainCharacter("Magnus");
-            storyPage.WriteTag("Adventure");
-            storyPage.SetTargetAudience("Young Adult (13-18 years of age)");
-            storyPage.SetLanguage("English");
-            storyPage.SetCopyright("Public Domain");
+            storyPage.WriteMainCharacter(addStoryTestBo.mainCharacter);
+            storyPage.WriteTag(addStoryTestBo.tag);
+            storyPage.SetTargetAudience(addStoryTestBo.setTargetAudience);
+            storyPage.SetLanguage(addStoryTestBo.language);
+            storyPage.SetCopyright(addStoryTestBo.copyRight);
             storyPage.ClickRatingButton();
             storyPage.ClickNextButton();
-            storyPage.WriteFinalStoryBody("Hop into an adventure with Magnus, future Lord of the Mountain.");
-            storyPage.WriteFinalStoryTitle("A book for adventurers");
+            storyPage.WriteFinalStoryBody(addStoryTestBo.finalStoryBody);
+            storyPage.WriteFinalStoryTitle(addStoryTestBo.finalStoryTitle);
             storyPage.ClickPublishButton();
-            storyPage.SetGenre("Adventure");
-            storyPage.WriteStoryTitle("The Lord Of the Mountain");
-            storyPage.WriteDescription("The book is about a courageous lord who wanted to conquer the high mountains of Zeeya");
+            storyPage.SetGenre(addStoryTestBo.genre);
+            storyPage.WriteStoryTitle(addStoryTestBo.storyTitle);
+            storyPage.WriteDescription(addStoryTestBo.storyDescription);
             storyPage.ClickPublishModalButton();
 
-            storyPage.AssertAddStoryTest();
+            storyPage.AssertAddStoryTest(addStoryTestBo.assertMessage);
         }
 
         [TestCleanup]
