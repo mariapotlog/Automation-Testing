@@ -61,9 +61,9 @@ namespace Wattpad_1.PageObjects
             TxtUserEmail().SendKeys(username);
             TxtPassword().SendKeys(password);
             BtnLogin().Click();
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementToBeClickable(btnGotIt));
-            BtnGotIt().Click();
+            //var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            //wait.Until(ExpectedConditions.ElementToBeClickable(btnGotIt));
+            //BtnGotIt().Click();
         }
         private By SignUp => By.XPath("//*[@id='authentication-panel']/footer/span/a");
         private IWebElement SignUpButton()
@@ -145,6 +145,21 @@ namespace Wattpad_1.PageObjects
             wait.Until(ExpectedConditions.ElementIsVisible(StartReading));
             StartReadingButton().Click();
         }
+        //div[@id='component-home-new-home-landing-/home']/div[@class='home-sections-wrapper']/div[@class='greeting-and-content-settings']//h2[@class='greeting-text']
+        private By LoginGreeting => By.XPath("//div[@id='component-home-new-home-landing-/home']/div[@class='home-sections-wrapper']/div[@class='greeting-and-content-settings']//h2[@class='greeting-text']");
+
+        private IWebElement LoginGreetingH4()
+        {
+            return driver.FindElement(LoginGreeting);
+        }
+        public string LoginFinalMessage => LoginGreetingH4().Text;
+        public void AssertLoginTest()
+        {
+            var expectedResult = "Welcome home, Stefana_QA!";
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(LoginGreeting));
+            Assert.AreEqual(expectedResult, LoginFinalMessage);
+        }
         private By Greeting => By.XPath("//*[@id='component-onboardingwriterjourney-onboarding-writer-journey-/start/writerjourney']/div[2]/div/div/div/div/div/h4");
 
         public By FinishModalMessage => By.XPath("//*[@id='component-onboardingwriterjourney-onboarding-writer-journey-/start/writerjourney']/div[2]/div/div/div/div");
@@ -153,6 +168,7 @@ namespace Wattpad_1.PageObjects
             return driver.FindElement(Greeting);
         }
         public string FinalMessage => GreetingMessageH4().Text;
+
 
         public void AssertRegisterTest()
         {

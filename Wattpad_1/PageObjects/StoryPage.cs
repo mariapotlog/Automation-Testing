@@ -143,6 +143,18 @@ namespace Wattpad_1.PageObjects
             wait.Until(driver => driver.FindElement(Rating));
             RatingSwitch().Click();
         }
+        //
+        private By OriginalWork => By.XPath("//*[@id='acknowledge-checkbox']");
+        private IWebElement OriginalWorkCheckBox()
+        {
+            return driver.FindElement(OriginalWork);
+        }
+        public void ClickOriginalWorkCheckBox()
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            wait.Until(driver => driver.FindElement(OriginalWork));
+            OriginalWorkCheckBox().Click();
+        }
 
         //
         private By Next => By.XPath("//*[@id='edit-controls']/div[2]/button[2]");

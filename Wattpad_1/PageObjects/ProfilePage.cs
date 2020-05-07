@@ -88,7 +88,7 @@ namespace Wattpad_1.PageObjects
         }
         public void ClickConversationsButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(Conversations));
             ConversationsButton().Click();
         }
@@ -120,21 +120,22 @@ namespace Wattpad_1.PageObjects
         }
         public void ClickWritePostMessage()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(driver => driver.FindElement(postMessage));
             PostMessageInput().Click();
             System.Threading.Thread.Sleep(100);
         }
         public void WritePostMessage(string post)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementExists(postMessageActive));
             PostMessageActiveInput().SendKeys(post);
+            PostMessageActiveInput().SendKeys(Keys.Space);
             System.Threading.Thread.Sleep(100);
         }
         public void ClickPostCheckbox()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(driver => driver.FindElement(postMessageActive));
             AnnounceCheckbox().Click();
             System.Threading.Thread.Sleep(150);
@@ -142,7 +143,7 @@ namespace Wattpad_1.PageObjects
         }
         public void ClickGotItButton()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(driver => driver.FindElement(GotIt));
             GotItButton().Click();
         }

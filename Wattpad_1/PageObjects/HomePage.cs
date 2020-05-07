@@ -18,7 +18,8 @@ namespace Wattpad_1.PageObjects
         }
 
         //Assert pentru username 
-        private IWebElement LblUsername => driver.FindElement(By.CssSelector("h2[class='greeting-text']"));
+        private IWebElement LblUsername => driver.FindElement(By.XPath("//div[@id='component-home-new-home-landing-/home']/div[@class='home-sections-wrapper']/div[@class='greeting-and-content-settings']//h2[@class='greeting-text']"));
+
         public string UsernameText => LblUsername.Text;
         //
         private By ProfileDropdown => By.XPath("//*[@id='profile-dropdown']/a/span[2]");
@@ -116,15 +117,24 @@ namespace Wattpad_1.PageObjects
         //
 
         private By writeMeniu => By.XPath("//*[@id='header']/nav[2]/ul/li/a");
-        private IWebElement BtnWrite => driver.FindElement(writeMeniu);
+        private IWebElement BtnWrite()
+        {
+            return driver.FindElement(writeMeniu);
+        }
 
         private By myStories => By.XPath("//*[@id='header']/nav[2]/ul/li/div[2]/ul/li[2]/a");
-        private IWebElement BtnMyStories => driver.FindElement(myStories);
+        private IWebElement BtnMyStories()
+        {
+            return driver.FindElement(myStories);
+        }
 
         public void NavigateToMyStoriesPage()
         {
-            BtnWrite.Click();
-            BtnMyStories.Click();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(driver => driver.FindElement(writeMeniu));
+            BtnWrite().Click();
+            wait.Until(driver => driver.FindElement(myStories));
+            BtnMyStories().Click();
         }
         private By btnSearch => By.CssSelector("span[class='fa fa-search fa-wp-neutral-1 ']");
         private IWebElement BtnSearch()
@@ -133,7 +143,7 @@ namespace Wattpad_1.PageObjects
         }
         public BooksFoundPage NavigateToBooksFoundPage()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(driver => driver.FindElement(btnSearch));
             BtnSearch().Click();
             return new BooksFoundPage(driver);

@@ -28,7 +28,7 @@ namespace Wattpad_1.PageObjects
 
         public void SelectStoryNotesEdit()
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementIsVisible(storyNotes));
             BtnStoryNotes().Click();
         }
@@ -64,7 +64,7 @@ namespace Wattpad_1.PageObjects
 
         public void MakeChanges(StoryNotesBO story)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementIsVisible(protagonistName));
             TxtProtagonistName.SendKeys(Keys.Control + "a");
             TxtProtagonistName.SendKeys(Keys.Backspace);

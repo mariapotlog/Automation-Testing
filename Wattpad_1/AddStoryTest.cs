@@ -49,6 +49,7 @@ namespace Wattpad_1
             storyPage.SetGenre(addStoryTestBo.genre);
             storyPage.WriteStoryTitle(addStoryTestBo.storyTitle);
             storyPage.WriteDescription(addStoryTestBo.storyDescription);
+            storyPage.ClickOriginalWorkCheckBox();
             storyPage.ClickPublishModalButton();
 
             storyPage.AssertAddStoryTest(addStoryTestBo.assertMessage);

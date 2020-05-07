@@ -11,5 +11,6 @@ namespace Wattpad_1.PageObjects
         public string Username = "stefanatoma98@gmail.com";
 
         public string Password = "testareautomata";
+
     }
 }
